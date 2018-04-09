@@ -14,6 +14,14 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { IndexComponent } from './user/components/index/index.component';
 import { SearchComponent } from './shared/components/search/search.component';
 import { AddUserComponent } from './user/components/add-user/add-user.component';
+import { CalendarComponent } from './user/components/calendar/calendar.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+import { DemoUtilsModule } from '../../node_modules/demo-utils/module';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -25,12 +33,18 @@ import { AddUserComponent } from './user/components/add-user/add-user.component'
     LoginComponent,
     IndexComponent,
     SearchComponent,
-    AddUserComponent
+    AddUserComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    CalendarModule.forRoot(),
+    BrowserAnimationsModule,
+    CalendarModule,
+    DemoUtilsModule,
+    FormsModule
 
   ],
   providers: [
