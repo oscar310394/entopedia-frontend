@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './user/components/menu/menu.component';
@@ -9,6 +11,8 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 
 import { HomeService } from './shared/services/home.service';
+import { UserService } from './user/services/user.service';
+
 import { InitialMenuComponent } from './shared/components/initial-menu/initial-menu.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { IndexComponent } from './user/components/index/index.component';
@@ -19,7 +23,7 @@ import { CalendarComponent } from './user/components/calendar/calendar.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { DemoUtilsModule } from '../../node_modules/demo-utils/module';
-import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -44,11 +48,13 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     CalendarModule,
     DemoUtilsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
   ],
   providers: [
-    HomeService
+    HomeService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
