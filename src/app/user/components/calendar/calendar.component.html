@@ -86,6 +86,7 @@
   <button class="btn btn-primary pull-right" (click)="addEvent()">
     Add new
   </button>
+
   <div class="clearfix"></div>
 </h3>
 
@@ -94,39 +95,37 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Primary color</th>
-      <th>Secondary color</th>
       <th>Starts at</th>
       <th>Ends at</th>
-      <th>Remove</th>
+      <th>Action</th>
     </tr>
   </thead>
 
   <tbody>
     <tr *ngFor="let event of events; let index = index">
       <td>
-        <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()">
+        <input type="text" class="form-control" [(ngModel)]="event.title" >
       </td>
+    
+     
       <td>
-        <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()">
-      </td>
-      <td>
-        <input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()">
-      </td>
-      <td>
-        <mwl-demo-utils-date-time-picker [(ngModel)]="event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
+        <mwl-demo-utils-date-time-picker [(ngModel)]="evento.start" (ngModelChange)="refresh.next()" placeholder="Not set">
         </mwl-demo-utils-date-time-picker>
       </td>
       <td>
-        <mwl-demo-utils-date-time-picker [(ngModel)]="event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
+        <mwl-demo-utils-date-time-picker [(ngModel)]="evento.end" (ngModelChange)="refresh.next()" placeholder="Not set">
         </mwl-demo-utils-date-time-picker>
       </td>
       <td>
-        <button class="btn btn-danger" (click)="events.splice(index, 1); refresh.next()">
+        <button class="btn btn-danger" (click)="events.splice(index, 1); refresh.next(); deleteCalendar(event.id);">
           Delete
+        </button>
+        <button *ngIf="event.draggable" class="btn btn-success"(click)="addCalendar();" >
+          Save
         </button>
       </td>
     </tr>
   </tbody>
+
 
 </table>

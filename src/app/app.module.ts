@@ -12,6 +12,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 
 import { HomeService } from './shared/services/home.service';
 import { UserService } from './user/services/user.service';
+import { CalendarService } from './user/services/calendar.service';
 
 import { InitialMenuComponent } from './shared/components/initial-menu/initial-menu.component';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -54,7 +55,8 @@ import { DemoUtilsModule } from '../../node_modules/demo-utils/module';
   ],
   providers: [
     HomeService,
-    UserService
+    UserService,
+    CalendarService
   ],
   bootstrap: [AppComponent]
 })
