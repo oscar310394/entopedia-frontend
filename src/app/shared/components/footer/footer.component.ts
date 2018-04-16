@@ -12,4 +12,8 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
   }
 
+  redirectToFacebook() {
+    window.open("https://www.facebook.com/Club-de-Entomología-UTN-San-Carlos-1186973771382964");
+  }
+
 }
