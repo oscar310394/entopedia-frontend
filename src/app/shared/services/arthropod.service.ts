@@ -14,6 +14,10 @@ export class ArthropodService {
     return this.http.get(`${this.baseUrl}`);
   }
 
+  getSearch(word:string) {
+    return this.http.get(`http://localhost:3000/entopedia/arthropod/search/${word}`);
+  }
+
   addArthropod(newUser: Arthropod) {
     return this.http.post(`${this.baseUrl}`, newUser, { headers: new Headers(this.headers()) });
   }

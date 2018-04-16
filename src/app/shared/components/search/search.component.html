@@ -1,5 +1,5 @@
 <div class="parallax text-white text-center">
-  <app-menu></app-menu>
+  <app-initial-menu></app-initial-menu>
   <div class="container">
     <br>
     <br>
@@ -8,9 +8,9 @@
     <p class="lead">Podras buscar toda la informacion que necesites</p>
     <p>Buscar Informacion</p>
     <div class="input-group lrcInputs">
-      <input class="form-control search" id="search-text" name="lookfor" placeholder="Buscar" type="text" />
+      <input class="form-control search" id="search-text" name="lookfor" [(ngModel)]="buscar" placeholder="Buscar" type="text" />
       <div class="input-group-btn">
-        <button class="btn btn-success lrcSearchButton" type="submit">
+        <button class="btn btn-success lrcSearchButton"  (click)="getSearch();">
           <i class="glyphicon glyphicon-search"></i>Go</button>
       </div>
 

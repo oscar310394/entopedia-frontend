@@ -16,10 +16,12 @@ export class SearchComponent implements OnInit {
   operation = { is_new: true };
   proff: string
   who: boolean;
+  buscar:string = "";
 
 
 
   insectos: Arthropod[] = [];
+
 
 
   closeResult: string;
@@ -50,6 +52,7 @@ export class SearchComponent implements OnInit {
 
   vermas(inse: Arthropod) {
     this.current_arthropod = inse;
+  
   }
 
   returnValidate() {
@@ -66,9 +69,11 @@ export class SearchComponent implements OnInit {
 
       this.closeResult = `Closed with: ${result}`;
       this.current_arthropod = new Arthropod();
+      this.ngOnInit();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       this.current_arthropod = new Arthropod();
+      this.ngOnInit();
     });
   }
 
@@ -89,7 +94,15 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.current_arthropod = new Arthropod();
-    this.getArthropod();
+   
+    if(this.buscar===""){
+      this.getArthropod();
+      return;
+
+    }else{
+      this.getSearch();
+      return;
+    }
   }
 
   editArthropod(art: Arthropod) {
@@ -102,6 +115,17 @@ export class SearchComponent implements OnInit {
       .subscribe(art => {
         this.insectos = art.json();
       });
+  }
+
+  getSearch() {
+   
+      this.arthropodService.getSearch(this.buscar)
+      .subscribe(art => {
+        this.insectos = art.json();
+       this.buscar = "";
+        return;
+      });
+      
   }
 
   addArthropod() {
