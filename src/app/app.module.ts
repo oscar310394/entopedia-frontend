@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { HomeService } from './shared/services/home.service';
 import { UserService } from './user/services/user.service';
 import { CalendarService } from './user/services/calendar.service';
 import { ArthropodService } from './shared/services/arthropod.service';
+import { LoginService } from './shared/services/login.service';
 
 import { InitialMenuComponent } from './shared/components/initial-menu/initial-menu.component';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -40,7 +41,7 @@ import { DemoUtilsModule } from '../../node_modules/demo-utils/module';
     SearchComponent,
     AddUserComponent,
     CalendarComponent,
- 
+
   ],
   imports: [
     BrowserModule,
@@ -51,14 +52,14 @@ import { DemoUtilsModule } from '../../node_modules/demo-utils/module';
     CalendarModule,
     DemoUtilsModule,
     FormsModule,
-    HttpClientModule
-
+    HttpModule
   ],
   providers: [
     HomeService,
     UserService,
     CalendarService,
-    ArthropodService
+    ArthropodService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

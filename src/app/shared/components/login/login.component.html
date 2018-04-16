@@ -4,12 +4,13 @@
     <div class="container rounded">
         <div class="form-group">
             <label for="inputEmail">Correo Electrónico</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Escriba su correo electrónico">            
+            <input type="email" class="form-control" id="inputEmail" placeholder="Escriba su correo electrónico" [(ngModel)]="email">            
         </div>
         <div class="form-group">
             <label for="password">Contraseña</label>
-            <input type="password" class="form-control" id="password" placeholder="Escriba su contraseña">
+            <input type="password" class="form-control" id="password" placeholder="Escriba su contraseña" [(ngModel)]="password">
         </div>
-        <a routerLink="/principal"><button type="submit" class="btn ">Aceptar</button></a>
+        <button type="submit" class="btn" (click)="doLogin()">Aceptar</button>
     </div>
 </div>
+

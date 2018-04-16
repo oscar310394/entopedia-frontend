@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { CalendarEventDB } from '../../event';
@@ -8,26 +8,28 @@ import { CalendarEventDB } from '../../event';
 export class CalendarService {
   baseUrl: string = "http://localhost:3000/entopedia/calendar";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
   getCalendar() {
-    return this.http.get<CalendarEventDB[]>(`${this.baseUrl}`)
-      .map(calendar => calendar);
+    return this.http.get(`${this.baseUrl}`, { headers: new Headers(this.headers()) });
   }
 
   addCalendar(newEvent: CalendarEventDB) {
-    return this.http.post<CalendarEventDB>(`${this.baseUrl}`, newEvent)
-      .map(calendar => calendar);
+    return this.http.post(`${this.baseUrl}`, newEvent, { headers: new Headers(this.headers()) });
   }
 
   updateCalendar(newEvent: CalendarEventDB) {
-    return this.http.put(`${this.baseUrl}/${newEvent.id}`, newEvent)
-      .map(res => res);
+    return this.http.put(`${this.baseUrl}/${newEvent.id}`, newEvent, { headers: new Headers(this.headers()) });
   }
 
   deleteCalendar(id: number) {
-    return this.http.delete(`${this.baseUrl}/${id}`)
-      .map(res => res);
+    return this.http.delete(`${this.baseUrl}/${id}`, { headers: new Headers(this.headers()) });
+  }
+
+  headers() {
+    return {
+      'Authorization': 'bearer ' + localStorage.getItem('token')
+    }
   }
 
 }

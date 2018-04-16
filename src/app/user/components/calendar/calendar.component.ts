@@ -56,23 +56,23 @@ export class CalendarComponent implements OnInit {
   closeResult: string;
   calednarEvent: CalendarEventDB[];
   current_event: CalendarEventDB;
-  eventosCalentario:CalendarEvent[];
+  eventosCalentario: CalendarEvent[];
   evento: CalendarEvent;
 
-  db_start:Date;
-  db_end:Date;
-  db_title:string;
-  db_color:string;
+  db_start: Date;
+  db_end: Date;
+  db_title: string;
+  db_color: string;
 
 
   operation = { is_new: true };
 
   ngOnInit() {
-    this.calednarEvent =[];
+    this.calednarEvent = [];
     this.current_event = new CalendarEventDB();
     this.getCalendar();
-   
-   
+
+
   }
 
 
@@ -94,7 +94,7 @@ export class CalendarComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal,private calendarService: CalendarService) {}
+  constructor(private modal: NgbModal, private calendarService: CalendarService) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -106,8 +106,8 @@ export class CalendarComponent implements OnInit {
       } else {
         this.activeDayIsOpen = true;
         this.viewDate = date;
-        
-        
+
+
       }
     }
   }
@@ -117,7 +117,7 @@ export class CalendarComponent implements OnInit {
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.evento = event;
- 
+
     this.modal.open(this.modalContent, { size: 'lg' });
 
   }
@@ -125,17 +125,17 @@ export class CalendarComponent implements OnInit {
 
 
   addEvent(): void {
-   
-    this.evento = 
-    {
-      title: 'New event',
-      start:  startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true
-      
-      
-    }
+
+    this.evento =
+      {
+        title: 'New event',
+        start: startOfDay(new Date()),
+        end: endOfDay(new Date()),
+        color: colors.red,
+        draggable: true
+
+
+      }
     this.events.unshift(this.evento);
     this.refresh.next();
   }
@@ -148,8 +148,8 @@ export class CalendarComponent implements OnInit {
   getCalendar() {
     this.calendarService.getCalendar()
       .subscribe(calednarEvent => {
-        this.calednarEvent = calednarEvent;
-       this.calendario();
+        this.calednarEvent = calednarEvent.json();
+        this.calendario();
       });
   }
 
@@ -161,17 +161,17 @@ export class CalendarComponent implements OnInit {
     this.current_event.color = this.evento.color.primary.toString();
 
 
-      this.calendarService.addCalendar(this.current_event)
-        .subscribe(res => {
-          this.operation.is_new = false;
-          this.current_event = new CalendarEventDB();
-          alert("Evento Guardado");
-          this.ngOnInit();
-        });
+    this.calendarService.addCalendar(this.current_event)
+      .subscribe(res => {
+        this.operation.is_new = false;
+        this.current_event = new CalendarEventDB();
+        alert("Evento Guardado");
+        this.ngOnInit();
+      });
 
   }
 
-  updateCalendar(){
+  updateCalendar() {
     this.calendarService.updateCalendar(this.current_event)
       .subscribe(res => {
         this.current_event = new CalendarEventDB();
@@ -188,26 +188,26 @@ export class CalendarComponent implements OnInit {
       });
   }
 
-  calendario(){
-this.events = [];
-  for (let i = 0; i < this.calednarEvent.length; i++) {
+  calendario() {
+    this.events = [];
+    for (let i = 0; i < this.calednarEvent.length; i++) {
 
-    this.evento = 
-    {
-      id : this.calednarEvent[i].id,
-      title: this.calednarEvent[i].title,
-      start:  startOfDay(new Date(this.calednarEvent[i].startevent)),
-      end: endOfDay(new Date(this.calednarEvent[i].endevent)),
-      color: colors.red,
-      draggable: false
-      
+      this.evento =
+        {
+          id: this.calednarEvent[i].id,
+          title: this.calednarEvent[i].title,
+          start: startOfDay(new Date(this.calednarEvent[i].startevent)),
+          end: endOfDay(new Date(this.calednarEvent[i].endevent)),
+          color: colors.red,
+          draggable: false
+
+        }
+
+      this.events.push(this.evento);
+
+      this.refresh.next();
+
     }
-    
-    this.events.push(this.evento);
-    
-    this.refresh.next();
-    
-     }
 
   }
 

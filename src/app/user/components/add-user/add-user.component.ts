@@ -53,7 +53,7 @@ export class AddUserComponent implements OnInit {
   getUsers() {
     this.userService.getUsers()
       .subscribe(users => {
-        this.users = users;
+        this.users = users.json();
       });
   }
 
