@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Arthropod } from '../../../arthropod';
 import * as jsPDF from 'jspdf';
 import { ArthropodService } from '../../services/arthropod.service';
+import { PhotoService } from '../../services/photo.service';
 
 
 @Component({
@@ -16,13 +17,9 @@ export class SearchComponent implements OnInit {
   operation = { is_new: true };
   proff: string
   who: boolean;
-  buscar:string = "";
-
-
+  buscar: string = "";
 
   insectos: Arthropod[] = [];
-
-
 
   closeResult: string;
 
@@ -30,7 +27,7 @@ export class SearchComponent implements OnInit {
     const doc = new jsPDF();
     doc.text(
       "Nombre Cientifico: " + this.current_arthropod.scientific_name +
-      "\nClase: " + this.current_arthropod.claArt +
+      "\nClase: " + this.current_arthropod.cla_art +
       "\nNombre Comun: " + this.current_arthropod.common_name +
       "\nOrden: " + this.current_arthropod.order_subphylum +
       "\nFamilia: " + this.current_arthropod.family +
@@ -48,11 +45,11 @@ export class SearchComponent implements OnInit {
   }
 
 
-  constructor(private modalService: NgbModal, private arthropodService: ArthropodService) { }
+  constructor(private modalService: NgbModal, private arthropodService: ArthropodService, private photoService: PhotoService) { }
 
   vermas(inse: Arthropod) {
     this.current_arthropod = inse;
-  
+
   }
 
   returnValidate() {
@@ -88,18 +85,14 @@ export class SearchComponent implements OnInit {
     }
   }
 
-
-
-
-
   ngOnInit() {
     this.current_arthropod = new Arthropod();
-   
-    if(this.buscar===""){
+
+    if (this.buscar === "") {
       this.getArthropod();
       return;
 
-    }else{
+    } else {
       this.getSearch();
       return;
     }
@@ -118,19 +111,20 @@ export class SearchComponent implements OnInit {
   }
 
   getSearch() {
-   
-      this.arthropodService.getSearch(this.buscar)
+
+    this.arthropodService.getSearch(this.buscar)
       .subscribe(art => {
         this.insectos = art.json();
-       this.buscar = "";
+        this.buscar = "";
         return;
       });
-      
+
   }
 
   addArthropod() {
     if (this.operation.is_new) {
-      this.current_arthropod.user_id = 1;
+      let user = JSON.parse(sessionStorage.getItem('user'));
+      this.current_arthropod.user_id = user.id;
       var today = new Date();
       var dd = today.getDate();
       var mm = today.getMonth() + 1;
@@ -140,7 +134,7 @@ export class SearchComponent implements OnInit {
       this.arthropodService.addArthropod(this.current_arthropod)
         .subscribe(res => {
           this.operation.is_new = false;
-          this.current_arthropod = new Arthropod();
+          this.current_arthropod = new Arthropod();          
           this.ngOnInit();
         });
       alert("Artopodo insertado");
@@ -159,6 +153,10 @@ export class SearchComponent implements OnInit {
       .subscribe(res => {
         this.ngOnInit();
       });
+  }
+
+  savePhoto() {
+
   }
 
 }

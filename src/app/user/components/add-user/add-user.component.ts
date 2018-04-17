@@ -21,12 +21,13 @@ export class AddUserComponent implements OnInit {
     if (this.operation.is_new) {
       this.current_user = new User();
     }
-
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.current_user = new User();
       this.ngOnInit();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.current_user = new User();
       this.ngOnInit();
     });
   }

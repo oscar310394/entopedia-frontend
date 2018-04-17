@@ -14,6 +14,6 @@ export class Arthropod {
     impact_on_humanity: string;
     color: string;
     body_size: string;
-    claArt: string;
+    cla_art: string;
     insert_date: string;
 }

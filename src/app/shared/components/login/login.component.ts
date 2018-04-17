@@ -22,10 +22,18 @@ export class LoginComponent implements OnInit {
     this.loginService.doLogin(this.email, this.password)
       .subscribe(res => {
         let data = res.json();
-        localStorage.setItem('token', data.token);
+        sessionStorage.setItem('token', data.token);
+        for (let index = 0; index < data.user.length; index++) {
+          let user = {
+            id: data.user[index]['id'],
+            name: data.user[index]['name'],
+            first_surname: data.user[index]['first_surname'],
+            is_admi: data.user[index]['is_admi']
+          }
+          sessionStorage.setItem('user', JSON.stringify(user));
+        }
         this.router.navigateByUrl('/principal');
       });
   }
-
 
 }

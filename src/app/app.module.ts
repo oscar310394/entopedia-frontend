@@ -15,6 +15,7 @@ import { UserService } from './user/services/user.service';
 import { CalendarService } from './user/services/calendar.service';
 import { ArthropodService } from './shared/services/arthropod.service';
 import { LoginService } from './shared/services/login.service';
+import { PhotoService } from './shared/services/photo.service';
 
 import { InitialMenuComponent } from './shared/components/initial-menu/initial-menu.component';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -59,7 +60,8 @@ import { DemoUtilsModule } from '../../node_modules/demo-utils/module';
     UserService,
     CalendarService,
     ArthropodService,
-    LoginService
+    LoginService,
+    PhotoService
   ],
   bootstrap: [AppComponent]
 })

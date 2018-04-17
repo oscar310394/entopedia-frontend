@@ -14,21 +14,22 @@ export class ArthropodService {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  getSearch(word:string) {
+  getSearch(word: string) {
     return this.http.get(`http://localhost:3000/entopedia/arthropod/search/${word}`);
   }
 
-  addArthropod(newUser: Arthropod) {
-    return this.http.post(`${this.baseUrl}`, newUser, { headers: new Headers(this.headers()) });
+  addArthropod(newArthropod: Arthropod) {
+    return this.http.post(`${this.baseUrl}`, newArthropod, { headers: new Headers(this.headers()) });
   }
 
-  updateArthropod(newUser: Arthropod) {
-    return this.http.put(`${this.baseUrl}/${newUser.id}`, newUser, { headers: new Headers(this.headers()) });
+  updateArthropod(newArthropod: Arthropod) {
+    return this.http.put(`${this.baseUrl}/${newArthropod.id}`, newArthropod, { headers: new Headers(this.headers()) });
   }
 
   deleteArthropod(id: number) {
     return this.http.delete(`${this.baseUrl}/${id}`, { headers: new Headers(this.headers()) });
   }
+
 
   headers() {
     return {
