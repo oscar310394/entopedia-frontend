@@ -80,7 +80,7 @@
 <br>
 <br>
 <br>
-
+<div *ngIf="admin">
 <h3>
   Editar Eventos
   <button class="btn btn-primary pull-right" (click)="addEvent()">
@@ -101,7 +101,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody >
     <tr *ngFor="let event of events; let index = index">
       <td>
         <input type="text" class="form-control" [(ngModel)]="event.title">
@@ -126,6 +126,8 @@
       </td>
     </tr>
   </tbody>
+  
 
 
 </table>
+</div>

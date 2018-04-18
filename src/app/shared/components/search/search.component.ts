@@ -19,11 +19,13 @@ export class SearchComponent implements OnInit {
   proff: string
   who: boolean;
   buscar: string = "";
+  avance: string = "";
 
   photos: Photo[];
   photo: Photo;
 
   fileToUpload: File[];
+  avances:JSON[] = [];
 
 
   insectos: Arthropod[];
@@ -111,6 +113,17 @@ export class SearchComponent implements OnInit {
     this.operation.is_new = false;
   }
 
+  isAdmi() {
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    let is_admi = user.is_admi;
+    
+    if (is_admi === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   getArthropod() {
     this.arthropodService.getArthropod()
       .subscribe(art => {
@@ -128,6 +141,8 @@ export class SearchComponent implements OnInit {
       });
 
   }
+
+
 
 
   handleFileInput(files: FileList) {

@@ -62,7 +62,9 @@ export class CalendarComponent implements OnInit {
   db_start: Date;
   db_end: Date;
   db_title: string;
+  logeado: JSON;
   db_color: string;
+  admin:boolean;
 
 
   operation = { is_new: true };
@@ -71,8 +73,21 @@ export class CalendarComponent implements OnInit {
     this.calednarEvent = [];
     this.current_event = new CalendarEventDB();
     this.getCalendar();
+    this.admin = this.isAdmi();
+   
 
 
+  }
+
+  isAdmi() {
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    let is_admi = user.is_admi;
+    
+    if (is_admi === 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 

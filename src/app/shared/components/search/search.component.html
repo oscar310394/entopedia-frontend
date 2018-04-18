@@ -23,6 +23,7 @@
 <table class="table table-striped custab">
   <thead>
     <h2>Resultados</h2>
+    <a *ngIf="isAdmi();" class="nav-link" routerLink="/avance">Avances</a>
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -34,6 +35,7 @@
           <th scope="col">Nombre Común</th>
           <th scope="col">
             <button type="button" class="btn btn-success" (click)="open(add)">Añadir</button>
+            
           </th>
 
 
@@ -277,3 +279,6 @@
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
       </div>
     </ng-template>
+
+
+  
