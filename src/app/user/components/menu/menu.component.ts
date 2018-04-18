@@ -8,11 +8,14 @@ import { MenuOptions } from '../../../menu-options';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+user:string;
+  
   menu_options: MenuOptions[] = MENUOPTIONS;
 
   constructor() { }
 
   ngOnInit() {
+    this.user   = JSON.parse(sessionStorage.getItem('user'));
 
   }
 

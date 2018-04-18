@@ -10,6 +10,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './shared/components/home/home.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 
+
 import { HomeService } from './shared/services/home.service';
 import { UserService } from './user/services/user.service';
 import { CalendarService } from './user/services/calendar.service';
@@ -27,6 +28,7 @@ import { CalendarComponent } from './user/components/calendar/calendar.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { DemoUtilsModule } from '../../node_modules/demo-utils/module';
+import { AdvanceComponent } from './shared/components/advance/advance.component';
 
 
 
@@ -42,6 +44,7 @@ import { DemoUtilsModule } from '../../node_modules/demo-utils/module';
     SearchComponent,
     AddUserComponent,
     CalendarComponent,
+    AdvanceComponent,
 
   ],
   imports: [

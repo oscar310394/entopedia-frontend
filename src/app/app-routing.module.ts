@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './shared/components/home/home.component';
+import { AdvanceComponent } from './shared/components/advance/advance.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { IndexComponent } from './user/components/index/index.component';
 import { SearchComponent } from './shared/components/search/search.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'principal', component: IndexComponent },
   { path: 'buscar', component: SearchComponent },
   { path: 'usuario', component: AddUserComponent },
-  { path: 'calendario', component: CalendarComponent }
+  { path: 'calendario', component: CalendarComponent },
+  { path: 'avance', component: AdvanceComponent }
 ]
 
 @NgModule({

@@ -18,6 +18,10 @@ export class ArthropodService {
     return this.http.get(`http://localhost:3000/entopedia/arthropod/search/${word}`);
   }
 
+  getAdvance(word: string) {
+    return this.http.get(`http://localhost:3000/entopedia/arthropod/advace/${word}`);
+  }
+
   addArthropod(newArthropod: Arthropod) {
     return this.http.post(`${this.baseUrl}`, newArthropod, { headers: new Headers(this.headers()) });
   }
