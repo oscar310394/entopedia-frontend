@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http,Headers } from '@angular/http';
 
 import { Photo } from '../../photo';
 
@@ -11,7 +11,17 @@ export class PhotoService {
   constructor(private http: Http) { }
 
   savePhoto(newPhoto: Photo) {
-    return this.http.post(`${this.baseUrl}`, newPhoto);
+
+    const formData:FormData = new FormData();
+    //formData.append
+    
+    return this.http.post(`${this.baseUrl}`, newPhoto,{ headers: new Headers(this.headers()) });
+  }
+
+  headers() {
+    return {
+      'Authorization': 'bearer ' + localStorage.getItem('token')
+    }
   }
 
 }

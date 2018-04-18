@@ -4,6 +4,7 @@ import { Arthropod } from '../../../arthropod';
 import * as jsPDF from 'jspdf';
 import { ArthropodService } from '../../services/arthropod.service';
 import { PhotoService } from '../../services/photo.service';
+import { Photo } from '../../../photo';
 
 
 @Component({
@@ -18,6 +19,12 @@ export class SearchComponent implements OnInit {
   proff: string
   who: boolean;
   buscar: string = "";
+
+  photos: Photo[];
+  photo: Photo;
+
+  fileToUpload: File[];
+
 
   insectos: Arthropod[];
 
@@ -86,6 +93,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fileToUpload = [];
     this.current_arthropod = new Arthropod();
 
     if (this.buscar === "") {
@@ -121,34 +129,56 @@ export class SearchComponent implements OnInit {
 
   }
 
+
+  handleFileInput(files: FileList) {
+    for (let index = 0; index < files.length; index++) {
+      const element = files[index];
+      this.fileToUpload.push(element);
+
+    }
+    console.log(this.fileToUpload);
+  }
+
   addArthropod() {
     if (this.operation.is_new) {
       let user = JSON.parse(sessionStorage.getItem('user'));
       this.current_arthropod.user_id = user.id;
+
       var today = new Date();
       var dd = today.getDate();
       var mm = today.getMonth() + 1;
       var yyyy = today.getFullYear();
       var fecha = dd + "/" + mm + "/" + yyyy;
       this.current_arthropod.insert_date = fecha;
+
       this.arthropodService.addArthropod(this.current_arthropod)
         .subscribe(res => {
           this.operation.is_new = false;
           this.current_arthropod = new Arthropod();
-          
-          let lastId = res.json()
+          this.photo = new Photo();
 
+          let lastId = res.json().insertId;
+          this.photo = new Photo();
+          for (let index = 0; index < this.fileToUpload.length; index++) {
+            
+            let photo_name = this.fileToUpload[index].name;
 
-          console.log(lastId.insertId);
-          //For para agregar fotos a la base de datos
+            this.photo.arthropod_id = lastId;
+            this.photo.name_photo = photo_name;
+    
+       
+            this.photoService.savePhoto(this.photo)
+              .subscribe(res => {
+                this.ngOnInit();
+              });
 
+          }
 
-          //let aaa = JSON.stringify(res.text());    
-          //console.log(aaa);          
           this.ngOnInit();
         });
       alert("Artopodo insertado");
       return;
+
     }
     this.arthropodService.updateArthropod(this.current_arthropod)
       .subscribe(res => {
@@ -156,7 +186,9 @@ export class SearchComponent implements OnInit {
         this.operation.is_new = true;
         this.ngOnInit();
       });
+
   }
+
 
   deleteArthropod(id: number) {
     this.arthropodService.deleteArthropod(id)

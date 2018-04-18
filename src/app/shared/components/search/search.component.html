@@ -8,9 +8,10 @@
     <p class="lead">Podras buscar toda la informacion que necesites</p>
     <p>Buscar Informacion</p>
     <div class="input-group lrcInputs">
-      <input class="form-control search" id="search-text" name="lookfor" [(ngModel)]="buscar" placeholder="Buscar" type="text" />
+      <input class="form-control search" id="search-text" name="lookfor" [(ngModel)]="buscar" placeholder="Buscar" type="text"
+      />
       <div class="input-group-btn">
-        <button class="btn btn-success lrcSearchButton"  (click)="getSearch();">
+        <button class="btn btn-success lrcSearchButton" (click)="getSearch();">
           <i class="glyphicon glyphicon-search"></i>Go</button>
       </div>
 
@@ -104,7 +105,7 @@
 
         <div class="form-group">
           <div class="col-sm-4">
-              <label>Subfilo</label>
+            <label>Subfilo</label>
             <select id="Select" class="form-control" [(ngModel)]="current_arthropod.subphylum">
               <option>Hexapoda</option>
               <option>Chelicerata</option>
@@ -116,7 +117,7 @@
           <div *ngSwitchCase="'Chelicerata'">
             <div class="form-group">
               <div class="col-sm-4">
-                  <label>Orden</label>
+                <label>Orden</label>
                 <select id="Select" class="form-control " [(ngModel)]="current_arthropod.order_subphylum">
                   <option>Araneae</option>
                   <option>Amblypgy</option>
@@ -262,10 +263,11 @@
           </div>
         </div>
 
-        <div class="form-group">          
-          <input type="file" class="form-control-file btn" id="file">      
-        </div>
 
+
+        <div class="form-group">
+          <input type="file" id="file" (change)="handleFileInput($event.target.files)" multiple>
+        </div>
 
 
       </div>
