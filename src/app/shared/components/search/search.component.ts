@@ -165,10 +165,11 @@ export class SearchComponent implements OnInit {
 
             this.photo.arthropod_id = lastId;
             this.photo.name_photo = photo_name;
-    
+            console.log(this.photo);
        
             this.photoService.savePhoto(this.photo)
               .subscribe(res => {
+                console.log(this.fileToUpload[index]);
                 this.ngOnInit();
               });
 

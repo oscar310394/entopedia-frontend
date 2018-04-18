@@ -27,11 +27,11 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nombre Cientifico</th>
-          <th scope="col">Nombre Comun</th>
-          <th scope="col">Orden</th>
-          <th scope="col">Familia</th>
           <th scope="col">Filo</th>
+          <th scope="col">Órden</th>
+          <th scope="col">Familia</th>
+          <th scope="col">Nombre Científico</th>
+          <th scope="col">Nombre Común</th>
           <th scope="col">
             <button type="button" class="btn btn-success" (click)="open(add)">Añadir</button>
           </th>
@@ -42,12 +42,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let inse of insectos">
-          <th scope="row">{{inse["id"]}}</th>
-          <td>{{inse["scientific_name"]}}</td>
-          <td>{{inse["common_name"]}}</td>
-          <td>{{inse["specie"]}}</td>
-          <td>{{inse["color"]}}</td>
-          <td>{{inse["genus"]}}</td>
+          <th scope="row">{{inse.id}}</th>
+          <td>Artrópodo</td>
+          <td>{{inse.order_subphylum}}</td>
+          <td>{{inse.family}}</td>
+          <td>{{inse.scientific_name}}</td>
+          <td>{{inse.common_name}}</td>
           <td>
             <button type="button" class="btn btn-primary" (click)="open(content); vermas(inse);">Ver Mas</button>
           </td>
