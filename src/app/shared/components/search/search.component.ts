@@ -160,13 +160,13 @@ export class SearchComponent implements OnInit {
           let lastId = res.json().insertId;
           this.photo = new Photo();
           for (let index = 0; index < this.fileToUpload.length; index++) {
-            
+
             let photo_name = this.fileToUpload[index].name;
 
             this.photo.arthropod_id = lastId;
             this.photo.name_photo = photo_name;
             console.log(this.photo);
-       
+
             this.photoService.savePhoto(this.photo)
               .subscribe(res => {
                 console.log(this.fileToUpload[index]);

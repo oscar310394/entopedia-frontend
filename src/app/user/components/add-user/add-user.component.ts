@@ -13,6 +13,7 @@ export class AddUserComponent implements OnInit {
   closeResult: string;
   users: User[];
   current_user: User;
+  repeat_password: string;
   operation = { is_new: true };
 
   constructor(private modalService: NgbModal, private userService: UserService) { }
@@ -44,6 +45,10 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+    this.current_user = new User();
+    this.current_user.is_admi = true;
+    this.current_user.is_active = true;
+    this.repeat_password = "";
   }
 
   editUser(user: User) {

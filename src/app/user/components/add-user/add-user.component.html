@@ -65,60 +65,96 @@
     </button>
   </div>
 
+
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+
   <div class="modal-body">
     <div class="form-group">
-      <label for="firstName">Nombre</label>
+      <label for="name">Nombre</label>
       <div class="col-sm-12">
-        <input type="text" id="name" class="form-control" [(ngModel)]="current_user.name" autofocus>
+        <input type="text" id="name" name="name" class="form-control" [(ngModel)]="current_user.name" #name="ngModel" autofocus required>
       </div>
+
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        El nombre es requerido.
+      </div>
+
     </div>
 
     <div class="form-group">
       <label for="lastName">Primer Apellido</label>
       <div class="col-sm-12">
-        <input type="text" id="first_surname" class="form-control" [(ngModel)]="current_user.first_surname">
+        <input type="text" id="first_surname" name="first_surname" class="form-control" [(ngModel)]="current_user.first_surname" #first_surname="ngModel"
+          required>
+      </div>
+      <div [hidden]="first_surname.valid || first_surname.pristine" class="alert alert-danger">
+        El primer apellido es requerido.
       </div>
     </div>
 
     <div class="form-group">
       <label for="ID Number">Segundo Apellido</label>
       <div class="col-sm-12">
-        <input type="text" id="second_surname" class="form-control" [(ngModel)]="current_user.second_surname">
+        <input type="text" id="second_surname" class="form-control" name="second_surname" [(ngModel)]="current_user.second_surname">
       </div>
     </div>
 
     <div class="form-group">
       <label for="password">Teléfono</label>
       <div class="col-sm-12">
-        <input type="text" id="phone_number" class="form-control" [(ngModel)]="current_user.phone_number">
+        <input type="text" id="phone_number" name="phone_number" class="form-control" [(ngModel)]="current_user.phone_number" #phone_number="ngModel"
+          required>
       </div>
+
+      <div [hidden]="phone_number.valid || phone_number.pristine" class="alert alert-danger">
+        El teléfono es requerido.
+      </div>
+
     </div>
 
     <div class="form-group">
       <label for="Confirm Password">Correo Electrónico</label>
       <div class="col-sm-12">
-        <input type="text" id="email" class="form-control" [(ngModel)]="current_user.email">
+        <input type="text" id="email" name="email" class="form-control" [(ngModel)]="current_user.email" #email="ngModel" required>
       </div>
+
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        El email es requerido.
+      </div>
+
     </div>
 
     <div class="form-group">
       <label for="Confirm Password">Ocupación</label>
       <div class="col-sm-12">
-        <input type="text" id="ocupation" class="form-control" [(ngModel)]="current_user.occupation">
+        <input type="text" id="ocupation" name="occupation" class="form-control" [(ngModel)]="current_user.occupation" #occupation="ngModel" required>
       </div>
+
+      <div [hidden]="occupation.valid || occupation.pristine" class="alert alert-danger">
+        La ocupación es requerida.
+      </div>
+
     </div>
 
     <div class="form-group">
       <label for="password">Contraseña</label>
       <div class="col-sm-12">
-        <input type="password" id="password" class="form-control" [(ngModel)]="current_user.password">
+        <input type="password" id="password" name="password" class="form-control" [(ngModel)]="current_user.password" #password="ngModel" required>
       </div>
+
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+        La contraseña es requerida.
+      </div>
+
     </div>
 
     <div class="form-group">
-      <label for="password">Repetir Contraseña</label>
+      <label for="password">Repetir Contraseña</label >
       <div class="col-sm-12">
-        <input type="password" id="repeat_password" class="form-control">
+        <input type="password" id="repeat_password" name="repeat_password" class="form-control" [(ngModel)]="repeat_password" #repeat_pass="ngModel" required>
+      </div>
+      <div [hidden]="repeat_pass.valid || repeat_pass.pristine" class="alert alert-danger">
+        Repetir contraseña es requerido.
       </div>
     </div>
 
@@ -147,9 +183,10 @@
     </div>
 
   </div>
+</form>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="addUser()">Guardar</button>
+    <button type="button" class="btn btn-primary" (click)="addUser()" [disabled]="!heroForm.form.valid">Guardar</button>
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
   </div>
 </ng-template>
