@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
   who: boolean;
   buscar: string = "";
 
-  insectos: Arthropod[] = [];
+  insectos: Arthropod[];
 
   closeResult: string;
 
@@ -134,7 +134,17 @@ export class SearchComponent implements OnInit {
       this.arthropodService.addArthropod(this.current_arthropod)
         .subscribe(res => {
           this.operation.is_new = false;
-          this.current_arthropod = new Arthropod();          
+          this.current_arthropod = new Arthropod();
+          
+          let lastId = res.json()
+
+
+          console.log(lastId.insertId);
+          //For para agregar fotos a la base de datos
+
+
+          //let aaa = JSON.stringify(res.text());    
+          //console.log(aaa);          
           this.ngOnInit();
         });
       alert("Artopodo insertado");
