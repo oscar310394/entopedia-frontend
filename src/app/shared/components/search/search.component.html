@@ -1,5 +1,13 @@
 <div class="parallax text-white text-center">
-  <app-initial-menu></app-initial-menu>
+
+  <div *ngIf="is_log.id > 0;else no_log">
+    <app-menu></app-menu>
+  </div>
+
+  <ng-template #no_log>
+    <app-initial-menu></app-initial-menu>
+  </ng-template>
+
   <div class="container">
     <br>
     <br>
@@ -35,7 +43,6 @@
           <th scope="col">Nombre Común</th>
           <th scope="col">
             <button type="button" class="btn btn-success" (click)="open(add)">Añadir</button>
-            
           </th>
 
 
@@ -181,7 +188,7 @@
         <div class="form-group">
           <label for="firstName">Clase</label>
           <div class="col-sm-12">
-            <input type="text" id="name" class="form-control" [(ngModel)]="current_arthropod.cla_art" autofocus>
+            <input type="text" id="name" class="form-control" [(ngModel)]="current_arthropod.cla_art" required autofocus>
           </div>
         </div>
 
@@ -279,6 +286,3 @@
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
       </div>
     </ng-template>
-
-
-  

@@ -21,11 +21,14 @@ export class SearchComponent implements OnInit {
   buscar: string = "";
   avance: string = "";
 
+
+  is_log = JSON.parse(sessionStorage.getItem('user'));
+
   photos: Photo[];
   photo: Photo;
 
   fileToUpload: File[];
-  avances:JSON[] = [];
+  avances: JSON[] = [];
 
 
   insectos: Arthropod[];
@@ -98,6 +101,7 @@ export class SearchComponent implements OnInit {
     this.fileToUpload = [];
     this.current_arthropod = new Arthropod();
 
+
     if (this.buscar === "") {
       this.getArthropod();
       return;
@@ -116,7 +120,7 @@ export class SearchComponent implements OnInit {
   isAdmi() {
     let user = JSON.parse(sessionStorage.getItem('user'));
     let is_admi = user.is_admi;
-    
+
     if (is_admi === 1) {
       return true;
     } else {

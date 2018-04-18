@@ -19,4 +19,10 @@ user:string;
 
   }
 
+  sessionOff(){
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+    this.ngOnInit();
+  }
+
 }
